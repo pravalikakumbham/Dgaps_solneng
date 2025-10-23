@@ -1,0 +1,21 @@
+name: Run Python Script
+
+on: 
+  push:
+    paths:
+      - 'Dataflow/Data Source/Dataflow_1850.json'
+
+jobs:
+  run-python:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Run Python script
+        run: dgaps_trigger_pipeline.py
